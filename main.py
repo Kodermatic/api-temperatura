@@ -1,10 +1,15 @@
 from flask import Flask, render_template
 import requests
 from random import randint
+import os
 
 app = Flask(__name__)
 
-api_key = open("api_key.txt").read().strip()
+try:
+  api_key =os.environ["api_key"]
+except:
+  api_key = open("api_key.txt").read().strip()
+
 # url = f"https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID={api_key}"
 
 @app.route("/", methods=["GET"])
